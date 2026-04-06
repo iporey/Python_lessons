@@ -18,7 +18,7 @@ while True:
             print("Invalid amount entered")
 
         else:
-            category = input("Enter expense category")
+            category = input("Enter expense category: ")
 
             expense_record = {
                 "name": name,
@@ -56,3 +56,10 @@ while True:
                 category_total[category] = amount
         for category in category_total:
             print(category, category_total[category])
+
+    elif choice == "5":
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid choice.")
