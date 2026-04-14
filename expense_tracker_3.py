@@ -16,8 +16,8 @@ while True:
     choice: str = input("Choose Option: ")
     match choice:
         case "1":
-            name = input("Enter expense name: ")
-            amount = float(input("Enter expense amount: "))
+            name: str = input("Enter expense name: ")
+            amount: float = float(input("Enter expense amount: "))
             if amount <= 0:
                 print("Invalid amount entered")
             else:
@@ -47,7 +47,7 @@ while True:
             if not expenses:
                 print("No expenses yet")
             else:
-                total = 0
+                total: float = 0
                 for expense in expenses:
                     total += expense["amount"]
                 print(total)
