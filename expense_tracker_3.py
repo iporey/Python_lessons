@@ -1,6 +1,9 @@
 """ "AN EXPENSE TRACKER"""
 
-expenses = []
+from typing import List
+
+expenses: List = []
+category_total: dict[str, float] = {}
 
 print("=======Expense Tracker=========")
 while True:
@@ -20,46 +23,56 @@ while True:
         else:
             category = input("Enter expense category: ")
 
-            expense_record = {
-                "name": name,
-                "amount": amount,
-                "category": category,
-            }
-
-            expenses.append(expense_record)
-            print("Expense Added Successfuly.")
-
-    elif choice == "2":
-        if not expenses:
-            print("No expenses yet")
-        else:
-            for expense in expenses:
-                print(expense["name"], expense["amount"], expense["category"])
-
-    elif choice == "3":
-        if not expenses:
-            print("No expenses yet")
-        else:
-            total = 0
-            for expense in expenses:
-                total += expense["amount"]
-            print(total)
-
-    elif choice == "4":
-        category_total = {}
-        for expense in expenses:
-            category = expense["category"]
-            amount = expense["amount"]
-            if category in category_total:
-                category_total[category] += amount
+    choice: str = input("Choose Option: ")
+    match choice:
+        case "1":
+            name = input("Enter expense name: ")
+            amount = float(input("Enter expense amount: "))
+            if amount <= 0:
+                print("Invalid amount entered")
+                continue
             else:
-                category_total[category] = amount
-        for category in category_total:
-            print(category, category_total[category])
+                category = input("Enter expense category: ")
 
-    elif choice == "5":
-        print("Goodbye!")
-        break
+                expense_record: dict[str, str | float] = {
+                    "name": name,
+                    "amount": amount,
+                    "category": category,
+                }
 
-    else:
-        print("Invalid choice.")
+                expenses.append(expense_record)
+                try:
+                    category_total[category] += amount
+                except:
+                    category_total[category] = amount
+                print("Expense Added Successfuly.")
+
+        case "2":
+            if not expenses:
+                print("No expenses yet")
+                continue
+            else:
+                for expense in expenses:
+                    print(expense["name"], expense["amount"], expense["category"])
+
+        case "3":
+            if not expenses:
+                print("No expenses yet")
+                continue
+            else:
+                total = 0
+                for expense in expenses:
+                    total += expense["amount"]
+                print(total)
+
+        case "4":
+            for category in category_total:
+                print(category, category_total[category])
+
+        case "5":
+            print("Goodbye!")
+            break
+
+        case _:
+            print("Invalid choice.")
+            continue
