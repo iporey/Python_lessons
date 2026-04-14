@@ -13,16 +13,6 @@ while True:
     print("4. Spending by category")
     print("5. Exit")
 
-    choice = input("Choose Option: ")
-    if choice == "1":
-        name = input("Enter your expense: ")
-        amount = float(input("Enter expense amount: "))
-        if amount <= 0:
-            print("Invalid amount entered")
-
-        else:
-            category = input("Enter expense category: ")
-
     choice: str = input("Choose Option: ")
     match choice:
         case "1":
@@ -30,7 +20,6 @@ while True:
             amount = float(input("Enter expense amount: "))
             if amount <= 0:
                 print("Invalid amount entered")
-                continue
             else:
                 category = input("Enter expense category: ")
 
@@ -50,7 +39,6 @@ while True:
         case "2":
             if not expenses:
                 print("No expenses yet")
-                continue
             else:
                 for expense in expenses:
                     print(expense["name"], expense["amount"], expense["category"])
@@ -58,7 +46,6 @@ while True:
         case "3":
             if not expenses:
                 print("No expenses yet")
-                continue
             else:
                 total = 0
                 for expense in expenses:
